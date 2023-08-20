@@ -28,6 +28,7 @@ const isWin = ()=>{
         if((boxtext[e[0]].innerText === boxtext[e[1]].innerText) && (boxtext[e[2]].innerText === boxtext[e[1]].innerText)&& (boxtext[e[0]].innerText !== "")){
             document.querySelector('.info-span').innerText = boxtext[e[0]].innerText + " Won!";
             isGameOver = true;
+            gameOverMusic.play();
             document.querySelector('.imagebox').getElementsByClassName('game-over-img')[0].style.width = "300px";
         }
     })
@@ -48,5 +49,16 @@ Array.from(boxes).forEach(element =>{
             }
         }
     })
+})
 
+//reset button
+reset.addEventListener('click', ()=>{
+    let boxtext = document.querySelectorAll('.boxtext');
+    document.querySelector('.imagebox').getElementsByClassName('game-over-img')[0].style.width = "0px";
+    isGameOver = false;
+    turn = "X";
+    document.getElementsByClassName('info-span')[0].innerText = "Turn for "+ turn;
+    Array.from(boxtext).forEach(ele =>{
+        ele.innerText = "";
+    })
 })
